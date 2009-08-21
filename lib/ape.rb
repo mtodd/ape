@@ -69,7 +69,8 @@ module WithAsyncPersistenceModule
   def self.extended(target)
     target.class.send(:include, Ape::AsyncPersistence)
     target.class.send(:async_persist, self.persistor, self.file, self.options)
-    target.persist!(target)
+    target.class.__ape_persistor.restore!(target) # restore
+    target.persist!(target) # start synchronizing
     self.persistor = self.file = self.options = nil
   end
 end
