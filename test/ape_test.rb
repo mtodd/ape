@@ -15,4 +15,15 @@ class ApeTest < Test::Unit::TestCase
     assert ApeTestArray.__ape_persistor.is_a?(Ape::Persistence::Abstract)
   end
   
+  def test_can_extend_an_existing_object_to_persist_itself
+    Ape::Persistence::Test.on_synchronize = lambda{ $synced += 1 }
+    
+    $synced = 0
+    a = []
+    a.extend(WithAsyncPersistence(:Test, "test.file"))
+    a << 1
+    sleep 0.1
+    assert $synced > 0
+  end
+  
 end

@@ -62,4 +62,23 @@ module Ape
   
 end
 
+module WithAsyncPersistenceModule
+  class << self
+    attr_accessor :persistor, :file, :options
+  end
+  def self.extended(target)
+    target.class.send(:include, Ape::AsyncPersistence)
+    target.class.send(:async_persist, self.persistor, self.file, self.options)
+    target.persist!(target)
+    self.persistor = self.file = self.options = nil
+  end
+end
+
+def WithAsyncPersistence(persistor, file, options = {})
+  WithAsyncPersistenceModule.persistor = persistor
+  WithAsyncPersistenceModule.file = file
+  WithAsyncPersistenceModule.options = options
+  WithAsyncPersistenceModule
+end
+
 Ape.start_reactor!
