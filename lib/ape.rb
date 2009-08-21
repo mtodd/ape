@@ -10,7 +10,7 @@ require 'ape/persistence'
 module Ape
   include Ape::Logger
   
-  VERSION = [0,0,0].join('.')
+  VERSION = [0,1,0].join('.')
   
   class << self
     attr_accessor :default_options
