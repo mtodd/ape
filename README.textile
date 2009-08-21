@@ -2,6 +2,8 @@ h1. Ape
 
 Asynchronous PErsistance for Ruby objects.
 
+Also consider the name Aporo: Asynchronous Persistence Of Ruby Objects.
+
 h2. Possible Syntaxes
 
 <pre><code>
