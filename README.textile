@@ -1,0 +1,26 @@
+h1. Ape
+
+Asynchronous PErsistance for Ruby objects.
+
+h2. Possible Syntaxes
+
+<pre><code>
+  class PersistentArray < Array
+    include Ape::AsyncPersistence
+    async_persist :Test, "tmp/test.obj"
+  end
+</code></pre>
+
+Or:
+
+<pre><code>
+  obj = []
+  obj.extend(WithAsyncPersistence)
+</code></pre>
+
+Or:
+
+<pre><code>
+  obj = []
+  obj.extend(WithAsyncPersistence("obj_filename"))
+</code></pre>
